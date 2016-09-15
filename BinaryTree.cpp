@@ -21,7 +21,8 @@ public:
 	/*
 	Method: insert
 	Parameters: none
-	Description: 1) calls the private insert method if root already exists 2) creates the root if it doesn't exist.
+	Description: 1) calls the private insert method if root already exists 
+		2) creates the root if it doesn't exist.
 	Return: void
 	*/
 
@@ -66,8 +67,8 @@ private:
 	Method: insert
 	Parameters: user input integer key value; node pointer leaf
 	Description: Inserts the node to the BST after it compares the value of key and leaf's key value. 
-				If leaf already has a left/right child, method is called again on the child node.
-				If key is larger than node's key value, it is inserted as the right leaf. If smaller, it is inserted as the left leaf.
+		If leaf already has a left/right child, method is called again on the child node.
+		If key is larger than node's key value, it is inserted as the right leaf. If smaller, it is inserted as the left leaf.
 	Return: void
 	*/
 	void insert(int key, node *leaf) {
@@ -111,14 +112,17 @@ private:
 			//cout << leaf->key_value << endl;
 			if (key == leaf->key_value)
 			{
-				//cout << key << endl;
+				//cout << leaf << endl;
 				return leaf;
 			}
 			if (key < leaf->key_value)
 				return search(key, leaf->left);
 			else return search(key, leaf->right);
 		}
-		else return NULL;
+		else{
+			//cout << "Node with key value of: " << key << " does not exist!" << endl;
+			return NULL;
+		}
 	}
 };
 
@@ -126,11 +130,15 @@ private:
 int main(void)
 {
 	BinaryTree happytree;
-	happytree.insert(5);
-	happytree.insert(1);
-	happytree.insert(4);
-	happytree.insert(7);
-	happytree.insert(6);
 	
-	happytree.search(2);
+	//example
+	happytree.insert(100);
+	happytree.insert(71);
+	happytree.insert(3000);
+	happytree.insert(20);
+	happytree.insert(80);
+	happytree.insert(200);
+	happytree.insert(5000);
+		
+	cout << happytree.search(100) << endl;
 }
