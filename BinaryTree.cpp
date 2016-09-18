@@ -9,10 +9,12 @@ using namespace std;
 class BinaryTree {
 public:
 	node *root;
+
 	//default constructor
 	BinaryTree() {
 		root = NULL;
 	}
+
 	//destructor
 	~BinaryTree() {
 		destroy_tree(root);
@@ -25,7 +27,6 @@ public:
 		2) creates the root if it doesn't exist.
 	Return: void
 	*/
-
 	void insert(int key) {
 		if (root != NULL)
 			insert(key, root);
@@ -37,6 +38,7 @@ public:
 			root->right = NULL;
 		}
 	}
+
 	/*
 	Method: search
 	Parameters: user input integer key value
@@ -99,6 +101,7 @@ private:
 			}
 		}
 	}
+
 	/*
 	Method: search
 	Parameter: user input integer key, node pointer leaf
@@ -106,13 +109,10 @@ private:
 	Return: returns the pointer to a node
 	*/
 	node *search(int key, node *leaf) {
-		//cout << leaf->key_value << endl;
 		if (leaf != NULL)
 		{
-			//cout << leaf->key_value << endl;
 			if (key == leaf->key_value)
 			{
-				//cout << leaf << endl;
 				return leaf;
 			}
 			if (key < leaf->key_value)
@@ -120,18 +120,16 @@ private:
 			else return search(key, leaf->right);
 		}
 		else{
-			//cout << "Node with key value of: " << key << " does not exist!" << endl;
 			return NULL;
 		}
 	}
 };
 
-//
+
 int main(void)
 {
 	BinaryTree happytree;
-	
-	//example
+
 	happytree.insert(100);
 	happytree.insert(71);
 	happytree.insert(3000);
@@ -139,6 +137,5 @@ int main(void)
 	happytree.insert(80);
 	happytree.insert(200);
 	happytree.insert(5000);
-		
-	cout << happytree.search(100) << endl;
+	cout << happytree.search(71) << endl;
 }
