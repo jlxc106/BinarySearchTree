@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <memory>
 #include "BinaryTree.h"
 
 //Binary Search Tree - larger keys are assigned the right leaf, smaller keys are assigned the left leaf.
@@ -128,14 +129,13 @@ private:
 
 int main(void)
 {
-	BinaryTree happytree;
-
-	happytree.insert(100);
-	happytree.insert(71);
-	happytree.insert(3000);
-	happytree.insert(20);
-	happytree.insert(80);
-	happytree.insert(200);
-	happytree.insert(5000);
-	cout << happytree.search(71) << endl;
+	std::shared_ptr<BinaryTree> happytree (new BinaryTree());
+	happytree->insert(100);
+	happytree->insert(71);
+	happytree->insert(3000);
+	happytree->insert(20);
+	happytree->insert(80);
+	happytree->insert(200);
+	happytree->insert(5000);
+	cout << happytree->search(71) << endl;
 }
