@@ -9,7 +9,7 @@ using namespace std;
 class BinaryTree {
 public:
 	node *root;
-
+	node *temp;
 	//default constructor
 	BinaryTree() {
 		root = NULL;
@@ -49,6 +49,91 @@ public:
 		return search(key, root);
 	}
 
+
+	/*
+	Method: verticalInvert
+	Parameters: node pointer
+	Description: Method that inverts the tree vertically via recursion
+	Return: node pointer
+	*/	
+	node *verticalInvert(node *leaf){
+		if(leaf == NULL)
+			return NULL;
+		if(leaf -> left != NULL)
+		{
+			verticalInvert(leaf->left);
+			leaf->left->right = leaf;
+		}
+		if(leaf -> right != NULL)
+		{
+			verticalInvert(leaf->right);
+			leaf->right->left = leaf;
+		}
+		cout << leaf ->key_value << endl;
+		leaf ->left = NULL;
+		leaf -> right = NULL;
+		return leaf;
+	}
+
+	/*
+	Method: horitzontalInvert
+	Parameters: node pointer
+	Description: Method that inverts the tree horizontally via recursion
+	Return: node pointer
+	*/
+	node *horizontalInvert(node *leaf){
+		if(leaf == NULL)
+			return NULL;
+		if(leaf ->left !=NULL)
+		{
+			horizontalInvert(leaf->left);
+		}
+		if(leaf ->right !=NULL)
+		{
+			horizontalInvert(leaf->right);
+		}
+		//traverse down the tree first then invert horizontally
+		temp = leaf ->right;
+		leaf->right = leaf->left;
+		leaf->left =temp;
+		return leaf;
+	}
+
+
+	void graphit(node *leaf)
+	{
+		if(leaf==root)
+		{
+			cout << "this node\tleft child\tright child" << endl;
+		}
+		if(leaf->left ==NULL)
+		{
+			cout << leaf ->key_value<< endl;
+		}
+		else
+		{
+			cout << leaf->key_value<<"\t\t"<< leaf -> left ->key_value << "\t\t"<<leaf->right->key_value << endl;
+		}
+		if(leaf->left !=NULL)
+		{
+			graphit(leaf->left);
+		}
+		if(leaf->right !=NULL)
+		{
+			graphit(leaf->right);
+		}
+	}
+	
+	void deleteNode(int key)
+	{
+		if(root->key_value = key)
+		{
+		
+		}
+		
+	
+	}
+	
 private:
 	/*
 	Method: destroy_tree
@@ -128,14 +213,18 @@ private:
 
 int main(void)
 {
-	BinaryTree happytree;
+	BinaryTree *happytree = new BinaryTree();
 
-	happytree.insert(100);
-	happytree.insert(71);
-	happytree.insert(3000);
-	happytree.insert(20);
-	happytree.insert(80);
-	happytree.insert(200);
-	happytree.insert(5000);
-	cout << happytree.search(71) << endl;
+	happytree->insert(100);
+	happytree->insert(71);
+	happytree->insert(3000);
+	happytree->insert(20);
+	happytree->insert(80);
+	happytree->insert(200);
+	happytree->insert(5000);
+//	happytree->graphit(happytree.root);
+//	happytree.verticalInvert(happytree.root);
+//	cout << happytree.search(71) << endl;
+	
+	delete happytree;
 }

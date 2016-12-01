@@ -8,3 +8,4 @@ public:
 	node *left;
 	node *right;
 };
+
